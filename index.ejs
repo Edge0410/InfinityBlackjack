@@ -1,0 +1,153 @@
+<html lang="ro">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="assets/style.css">
+    <link rel="icon" href="assets/png/AS.png">
+    <title>Infinity Blackjack</title>
+</head>
+
+<body style="position: relative; margin: 0;">
+    <div class="logo">
+        <img src="assets/png/logo.png" class="logo-img">
+    </div>
+
+    <div class="blank" style="display: none; height: 350px;">
+        <!--Made to allow lower resolution users to see the table-->
+    </div>
+    <div class="modal" style="display: none;">
+        <div class="mesaj">
+            Ai castigat!
+        </div>
+        <div class="winlose">
+            +500$
+        </div>
+    </div>
+
+
+    <div class="login">
+
+        <% if(!locals.user && !locals.found) { %>
+        <form method="POST" class="input-form" id="login-form" action="/login">
+            <h2 class="login-title">Login</h2>
+            <label for="username">Username:</label><br>
+            <input type="text" id="username" name="username" required><br>
+            <label for="parola">Parola:</label><br>
+            <input type="password" id="password" name="password" required><br>
+            <input type="submit" value="Trimite">
+        </form>    
+        <form method="POST" class="input-form" id="register-form" action="/register">
+            <h2 class="login-title">Inregistrare</h2>
+            <label for="username">Username:</label><br>
+            <input type="text" id="username" name="username" required><br>
+            <label for="email">Email:</label><br>
+            <input type="text" id="email" name="email" required><br>
+            <label for="parola">Parola:</label><br>
+            <input type="password" id="password" name="password" required><br>
+            <input type="submit" value="Trimite">
+        </form>
+        <% } else if(locals.user) { %>
+            <h5>Welcome, <%- locals.user %></h5>
+            <form method="POST" class="input-form" id="register-form" action="/logout">
+                <input type="submit" value="Logout">
+            </form>
+        <% } else if(!locals.user && locals.found == -1) { %>
+            <form method="POST" class="input-form" id="login-form" action="/login">
+                <h2 class="login-title">Login</h2>
+                <label for="username">Username:</label><br>
+                <input type="text" id="username" name="username" required><br>
+                <label for="parola">Parola:</label><br>
+                <input type="password" id="password" name="password" required><br>
+                <input type="submit" value="Trimite">
+                <h5 style="color:red">Username sau parola incorecta!</h5>
+            </form>    
+            
+            <form method="POST" class="input-form" id="register-form" action="/register">
+                <h2 class="login-title">Inregistrare</h2>
+                <label for="username">Username:</label><br>
+                <input type="text" id="username" name="username" required><br>
+                <label for="email">Email:</label><br>
+                <input type="text" id="email" name="email" required><br>
+                <label for="parola">Parola:</label><br>
+                <input type="password" id="password" name="password" required><br>
+                <input type="submit" value="Trimite">
+            </form>
+        <% } %>
+
+    </div>
+
+    <% if(locals.user) { %>    
+    <div class="wrapper">
+        <div class="table">
+            <div class="dealer-person">
+                <img class="logo-img" src="assets/png/dealerstefan.png">
+            </div>
+            <div class="chips">
+                <img src="assets/png/chips.png" class="logo-img">
+            </div>
+            <div class="deck">
+                <img src="assets/png/deck.png" class="logo-img">
+            </div>
+            <div class="dealer">
+                <div class="stack-dealer">
+                    <div class="card"><img class="card-png" src="assets/png/10H.png"></div>
+
+                    <div class="total">0</div>
+                </div>
+            </div>
+            <div class="player">
+                <div class="stack2" style="display: none;">
+
+                    <div class="total">0</div>
+                    <div class="activ" style="display: none;">&#8657;</div>
+                </div>
+                <div class="stack1">
+                    <div class="card"><img class="card-png" src="assets/png/10H.png"></div>
+
+                    <div class="total">0</div>
+                    <div class="activ" style="display: block;">&#8657;</div>
+                </div>
+            </div>
+            <br>
+        </div>
+        <div class="buttons">
+            <span class="desp1">
+                <div class="start bighover" onclick="startgame()"><img src="assets/png/start.png" alt="" class="buton">
+                </div>
+                <div class="dd" onclick="hit(1)"><img src="assets/png/dd.png" alt="" class="buton"></div>
+                <div class="hit" onclick="hit(0)"><img src="assets/png/hit.png" alt="" class="buton"></div>
+                <div class="stand" onclick="stand()"><img src="assets/png/stand.png" alt="" class="buton"></div>
+                <div class="split" onclick="sp()"><img src="assets/png/split.png" alt="" class="buton"></div>
+            </span>
+            <span class="desp2">
+                <div class="balance">
+                    <span class="unify">
+                        <h5>Balanță:</h5>
+                        <div class="counter" id="counter">
+                            $1000
+                        </div>
+                        <h5>Joacă cu:</h5>
+                        <input class="selector" type="text">
+                    </span>
+                    <div class="butmici">
+                        <div class="plus" onclick="increasebal()">
+                            <img src="assets/png/hit.png" alt="" class="butonmic">
+                        </div>
+                        <div class="minus" onclick="decreasebal()">
+                            <img src="assets/png/stand.png" alt="" class="butonmic">
+                        </div>
+                    </div>
+                </div>
+            </span>
+        </div>
+    </div>
+
+    <% } %>
+
+</body>
+<footer></footer>
+<script src="assets/engine.js"></script>
+
+</html>
