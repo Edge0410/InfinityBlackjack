@@ -6,19 +6,14 @@ body{
 
 .logo{
     display: block;
-    position: absolute;
     margin: auto;
-    width: 250px;
-    height: 130px;
-    top: -180px;
-    left: 40px;
-    z-index: 4;
-    opacity: 0.7;
+    width: 20%;
+    height: 300px;
+    padding: 50px;
     backface-visibility:hidden;
     -webkit-background-clip:content-box;
     background-clip:content-box;
     -webkit-backface-visibility: hidden;
-    animation: continuous 3s forwards infinite; 
 }
 
 .login{
@@ -46,7 +41,7 @@ body{
     backface-visibility:hidden;
     -webkit-background-clip:content-box;
     background-clip:content-box;
-    -webkit-backface-visibility: hidden;
+    -webkit-backface-visibility: hidden; 
 }
 
 .dealer-person
@@ -104,20 +99,6 @@ body{
     height: 500px;
     background-image: url('png/table.png');
     background-size: 100% 100%;
-}
-
-
-@media only screen and (max-width:800px)
-{
-    .table{
-        margin-top: 300px;
-    }
-    .logo
-    {
-        left: 0;
-        right: 0 !important;
-        top: -320px;
-    }
 }
 
 .player
@@ -347,85 +328,6 @@ body{
     box-sizing: border-box;
 }
 
-@media only screen and (max-width:600px)
-{
-    .buttons
-    {
-        display: block;
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        padding: 10px !important; 
-        background-color: rgb(0, 200, 0);
-        z-index: 15;
-    }
-
-    .deck
-{
-    display: block;
-    position: absolute;
-    top: 20px;
-    right: 0px;
-    margin: auto;
-    width: 110px;
-    height: 70px;
-}
-
-.chips
-{
-    display: block;
-    position: absolute;
-    top: 20px;
-    left: 0px;
-    margin: auto;
-    width: 110px;
-    height: 70px;
-}
-
-    .balance
-    {
-        display: flex !important;
-    }
-
-    .unify
-    {
-        display: block;
-        margin: auto;
-        margin-right: 15px;
-    }
-
-    .butmici
-    {
-        width: auto !important;
-        margin-left: 15px !important;
-    }
-
-    .counter
-    {
-        width: auto;
-    }
-
-    .split
-    {
-        margin-right: auto !important;
-    }
-
-    .start, .dd, .hit, .stand, .split
-    {
-        margin: auto;
-        margin: 10px;
-        width: 45px;
-        height: 45px;
-        margin-left: 5px;
-        margin-right: 5px;
-    }
-
-    .blank
-    {
-        display: block !important;
-    }
-}
-
 .bighover
 {
     transform: scale(1);
@@ -573,6 +475,44 @@ img.buton{
     border: 2px double green;
 }
 
+@media only screen and (max-width: 700px)
+{
+    .wrapper
+    {
+        display: block;
+        width: 95%;
+    }
+    .table{
+        width: 100%;
+        height: 400px;
+        margin-top: 100px;
+    }
+    .dealer-person
+    {
+        width: 100px;
+        height: 100px;
+        top: -100px !important;
+    }
+    .chips ,.deck
+    {
+        width: 120px;
+        height: 60px;
+    }
+
+    .desp1
+    {
+        flex-direction: row;
+        margin: auto;
+    }
+    .desp1 div
+    {
+        margin: 5px;
+        width: 30px;
+        height: 30px;
+    }
+}
+
+
 .selector
 {
     display: block;
@@ -586,20 +526,6 @@ img.buton{
     background-color: rgba(0, 0, 0, 0);
     font-weight: bold;
     border: 2px double green;
-}
-
-
-@media only screen and (max-width: 700px)
-{
-    .counter
-    {
-        overflow: scroll;
-        -ms-overflow-style: none;  /* Internet Explorer 10+ */
-        scrollbar-width: none;  /* Firefox */
-    }
-    .counter::-webkit-scrollbar { 
-        display: none;  /* Safari and Chrome */
-    }
 }
 
 h5{
@@ -630,4 +556,19 @@ h5{
 {
     text-align: center;
     font-weight: bold;
+}
+
+@media only screen and (max-width: 500px)
+{
+    .login
+    {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .logo
+    {
+        width: 70%;
+        height: 150px;
+    }
 }

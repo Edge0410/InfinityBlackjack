@@ -1,14 +1,3 @@
-// class pvtest{
-
-//     #marian;
-//     static marian2 = 50;
-//     constructor(){
-//         this.#marian = 20;
-//     }
-// }
-
-// const instance = new pvtest();
-
 //globale - status
 var balance = 1000; // balanta
 var playedbalance = 0; // miza mainii
@@ -389,7 +378,9 @@ async function startgame() {
         document.getElementsByClassName("start")[0].classList.remove("bighover");
         game_over = 0;
         //scadem balanta 
+        console.log(balance);
         balance -= selectbalance;
+        console.log(balance);
         playedbalance = selectbalance;
         const updatebalance = await updatebal(); //actualizam balanta
         const gata_reset = await resetgame(); //resetam jocul
@@ -942,19 +933,25 @@ document.addEventListener("input" , function(){
 });
 
 function loadBalance() {
-    var count_id = this.value;
-    $("#counter").html("");
-    $.ajax({
-      url: "http://localhost:8888/fetch-balance",
-      type: "GET",
-      dataType: "json",
-      success: function (res) {
-        console.log(res);
-        $("#counter").html("$"+res.balance[0].balance);
-      },
+    return new Promise(resolve => {
+        setTimeout(() => {
+            var count_id = this.value;
+            $("#counter").html("");
+            $.ajax({
+              url: "http://localhost:8888/fetch-balance",
+              type: "GET",
+              dataType: "json",
+              success: function (res) {
+                console.log(res);
+                $("#counter").html("$"+res.balance[0].balance);
+                balance = res.balance[0].balance;
+              },
+            });
+            resolve('updated balance');
+        }, 100);
     });
   }
 
-$(document).ready(function () {
-    loadBalance();
+$(document).ready(async function () {
+    const retrieve_bal = await loadBalance();
   });
