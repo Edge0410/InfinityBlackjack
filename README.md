@@ -35,4 +35,4 @@ const connection = mysql.createConnection({
 Aplicatia poate fi rulata prin intermediul oricarui browser cu versiunile urmatoare sau mai noi:
 Edge 12, Firefox 4, Safari 3, Chrome 1
 
-**responsive pentru orice rezolutie desktop/mobile**
+**Responsive pentru orice rezolutie desktop/mobile**
